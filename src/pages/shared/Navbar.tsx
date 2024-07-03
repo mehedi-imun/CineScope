@@ -10,10 +10,10 @@ import { Clapperboard } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <div className="flex  items-center justify-between">
-      <div className="flex ">
+    <div className="flex  items-center justify-between border-b-2 py-3">
+      <div className="flex items-center">
         <h3 className="font-extrabold bg-yellow-400 p-1 rounded-md">CineScope </h3>{" "}
-        <Clapperboard className="mx-3" />
+        <Clapperboard className="mx-3 " />
       </div>
       <NavigationMenu className="">
         <NavigationMenuList>
