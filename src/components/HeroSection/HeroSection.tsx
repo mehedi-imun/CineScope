@@ -29,10 +29,10 @@ export function HeroSection() {
 
   return (
     <Carousel
-      className="w-[90%] mx-auto my-5"
+      className="w-[95%] mx-auto"
       plugins={[
         Autoplay({
-          delay: 2000,
+          delay: 6000,
         }),
       ]}
     >
@@ -40,7 +40,7 @@ export function HeroSection() {
         {sliderData.map((slider) => (
           <CarouselItem key={slider.id}>
             <Card>
-              <CardContent className="flex items-center justify-center h-[600px] p-1">
+              <CardContent className="flex items-center justify-center h-[500px] p-1">
                 <img src={slider?.image} className="h-full w-full" alt="" />
               </CardContent>
             </Card>
