@@ -1,6 +1,15 @@
+import { useGetMoviesQuery } from "@/redux/api/api";
 import { MovieCard } from "../MovieCard/MovieCard";
 
 const TopMovies = () => {
+  const { data: movies, isLoading } = useGetMoviesQuery({});
+  //   console.log(data);
+  if (isLoading)
+    return (
+      <p className="text-3xl text-center text-yellow-500 my-2 font-bold">
+        Loading....
+      </p>
+    );
   return (
     <div className="my-5">
       <h1 className="text-4xl font-bold text-yellow-400">What to watch</h1>
