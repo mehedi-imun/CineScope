@@ -15,17 +15,17 @@ type CardProps = React.ComponentProps<typeof Card>;
 
 export function MovieCard({ className, ...props }: CardProps) {
   return (
-    <Card className={cn("w-[380px]", className)} {...props}>
-      <CardHeader>
+    <Card className={cn(className)} {...props}>
+      <CardHeader className="p-2">
         <img src={movieImage} className="max-h-[500px]" alt="" />
+      </CardHeader>
+      <CardContent className="grid">
         <div className="flex  items-center gap-2">
           <Star color="orange" fill="orange" />
           <p className="text-2xl">8.7</p>
         </div>
         <CardTitle>Inception</CardTitle>
-      </CardHeader>
-      <CardContent className="grid">
-        <p className="text-xl">Sci-Fi</p>
+        <p className="text-xl mt-4">Sci-Fi</p>
       </CardContent>
       <CardFooter>
         <Button className="w-full">
