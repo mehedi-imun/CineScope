@@ -8,7 +8,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Plus } from "lucide-react";
+import { Plus, Star } from "lucide-react";
+import Rating from "react-rating";
 
 type TMovieProps = {
   name: string;
@@ -29,6 +30,14 @@ export function RatingModal({ name }: TMovieProps) {
             RATE THIS
           </DialogTitle>
           <h1 className="text-center text-2xl">{name}</h1>
+          <div className="text-center pt-2">
+            <Rating
+              emptySymbol={<Star size={40} color="orange" />}
+              fullSymbol={<Star size={40} color="orange" fill="orange" />}
+              fractions={2}
+              stop={10}
+            />
+          </div>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <Input
