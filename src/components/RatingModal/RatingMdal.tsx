@@ -33,15 +33,16 @@ export function RatingModal({ name }: TMovieProps) {
           Add Ratings
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-gray-800  border-0">
+      <DialogContent className="bg-gray-800 text-white border-0">
         <DialogHeader>
           <DialogTitle className="text-center text-3xl font-bold text-yellow-400">
             RATE THIS
           </DialogTitle>
-          <h1 className="text-center text-2xl text-white">{name}</h1>
+          <h1 className="text-center text-2xl ">{name}</h1>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center pt-2">
+            {/* @ts-expect-error their is no type declaration file for react rating*/}
             <Rating
               emptySymbol={<Star size={40} color="orange" />}
               fullSymbol={<Star size={40} color="orange" fill="orange" />}
@@ -50,7 +51,7 @@ export function RatingModal({ name }: TMovieProps) {
               onClick={(value) => setRatingValue(value)}
             />
           </div>
-          <div className="grid gap-4 py-4">
+          <div className="grid gap-4 py-4 text-gray-900">
             <Input
               type="email"
               placeholder="Enter your email"
