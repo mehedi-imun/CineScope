@@ -1,4 +1,4 @@
-import { Star, Plus } from "lucide-react";
+import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 
 import movieImage from "@/assets/inception.png";
+import { RatingModal } from "../RatingModal/RatingMdal";
 
 type CardProps = React.ComponentProps<typeof Card>;
 
@@ -28,10 +29,7 @@ export function MovieCard({ className, ...props }: CardProps) {
         <p className="text-xl mt-4">Sci-Fi</p>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Ratings
-        </Button>
+        <RatingModal />
       </CardFooter>
     </Card>
   );
