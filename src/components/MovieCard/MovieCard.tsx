@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -29,7 +29,7 @@ export function MovieCard({ className, ...props }: CardProps) {
         <p className="text-xl mt-4">Sci-Fi</p>
       </CardContent>
       <CardFooter>
-        <RatingModal />
+        <RatingModal name="Inception" />
       </CardFooter>
     </Card>
   );

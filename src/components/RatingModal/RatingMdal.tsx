@@ -2,17 +2,19 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 
-export function RatingModal() {
+type TMovieProps = {
+  name: string;
+};
+
+export function RatingModal({ name }: TMovieProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -21,9 +23,12 @@ export function RatingModal() {
           Add Ratings
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="bg-gray-800 text-white border-0">
         <DialogHeader>
-          <DialogTitle>RATE THIS</DialogTitle>
+          <DialogTitle className="text-center text-3xl font-bold text-yellow-400">
+            RATE THIS
+          </DialogTitle>
+          <h1 className="text-center text-2xl">{name}</h1>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <Input
@@ -39,8 +44,8 @@ export function RatingModal() {
           />
         </div>
         <DialogFooter>
-          <Button type="submit" className="w-full">
-            Rate
+          <Button color="yellow" type="submit" className="w-full">
+            Submit
           </Button>
         </DialogFooter>
       </DialogContent>
