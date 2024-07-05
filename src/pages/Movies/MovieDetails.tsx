@@ -2,8 +2,24 @@
 
 import movieImage from "@/assets/inception.png";
 import { Button } from "@/components/ui/button";
+import { useGetSingleMovieQuery } from "@/redux/api/api";
 import { Play, Plus, Star, StarIcon } from "lucide-react";
+import { useParams } from "react-router-dom";
+
 export default function MovieDetails() {
+  const { id: slug } = useParams();
+  // console.log(slug);
+  const { data, isLoading } = useGetSingleMovieQuery(slug);
+  // console.log(movie);
+  if (isLoading)
+    return (
+      <p className="text-3xl text-center text-yellow-500 my-2 font-bold">
+        Loading....
+      </p>
+    );
+
+  const { data: movie } = data;
+
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 10; i++) {
@@ -21,10 +37,10 @@ export default function MovieDetails() {
   return (
     <div className="flex flex-col items-center p-4 bg-gray-900 text-white min-h-screen">
       <div className="max-w-6xl w-full bg-gray-800 rounded-lg shadow-lg p-6 animate__animated animate__fadeIn">
-        <h1 className="text-4xl font-extrabold mb-4">Movie Title</h1>
+        <h1 className="text-4xl font-extrabold mb-4">{movie?.title}</h1>
         <div className="flex flex-col md:flex-row">
           <img
-            src={movieImage}
+            src={movie?.image}
             alt="Movie Poster"
             className="w-full md:w-1/3 h-auto mb-4 rounded-lg shadow-lg md:mr-6 transform hover:scale-105 transition-transform duration-300"
           />
@@ -42,24 +58,18 @@ export default function MovieDetails() {
               </div>
               <p className="mb-2">
                 <span className="font-semibold text-yellow-500">Genre:</span>{" "}
-                Action, Adventure, Sci-Fi
+                {movie?.genre}
               </p>
               <p className="mb-2">
                 <span className="font-semibold text-yellow-500">Director:</span>{" "}
-                John Doe
+                {movie?.director}
               </p>
               <p className="mb-4">
                 <span className="font-semibold text-yellow-500">Cast:</span>{" "}
-                Jane Smith, John Doe, Alice Johnson
+                {movie?.cast}
               </p>
             </div>
-            <p className="text-justify mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
-              Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
-              Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris
-              massa.
-            </p>
+            <p className="text-justify mb-4">{movie?.description}</p>
             <div className="flex space-x-4 mb-4">
               <Button className="px-4 py-2 bg-yellow-500 text-gray-900 rounded-lg font-bold flex items-center hover:bg-yellow-400">
                 <Play className="mr-2" /> Watch Trailer

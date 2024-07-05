@@ -10,6 +10,13 @@ export const baseApi = createApi({
         method: "GET",
       }),
     }),
+    getSingleMovie: builder.query({
+      query: (slug) => ({
+        url: `/movies/${slug}`,
+        method: "GET",
+      }),
+    }),
+
     addMovies: builder.mutation({
       query: (data) => ({
         url: "/movies",
@@ -20,4 +27,8 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetMoviesQuery, useAddMoviesMutation } = baseApi;
+export const {
+  useGetMoviesQuery,
+  useGetSingleMovieQuery,
+  useAddMoviesMutation,
+} = baseApi;

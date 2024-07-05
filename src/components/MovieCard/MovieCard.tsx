@@ -15,7 +15,7 @@ import { TMovie } from "@/types";
 export function MovieCard({ movie }: { movie: TMovie }) {
   return (
     <Card>
-      <Link to={`/movie/${movie?._id}`}>
+      <Link to={`/movie/${movie?.slug}`}>
         <CardHeader className="p-2">
           <img src={movie?.image} className="h-[400px]" alt="" />
         </CardHeader>
