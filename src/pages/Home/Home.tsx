@@ -1,3 +1,10 @@
+import { HeroSection } from "@/components/HeroSection/HeroSection";
+import TopMovies from "@/components/TopMovies/TopMovies";
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div className="mx-auto container">
+      <HeroSection />
+      <TopMovies />
+    </div>
+  );
 }

@@ -1,13 +1,9 @@
-import { HeroSection } from "./components/HeroSection/HeroSection";
-import TopMovies from "./components/TopMovies/TopMovies";
-import Navbar from "./pages/shared/Navbar";
+import Home from "./pages/Home/Home";
 
 const App = () => {
   return (
-    <div className="mx-auto container">
-      <Navbar />
-      <HeroSection />
-      <TopMovies />
+    <div>
+      <Home></Home>
     </div>
   );
 };
