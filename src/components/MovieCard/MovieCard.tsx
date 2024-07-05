@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
 
 import {
@@ -9,26 +8,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import movieImage from "@/assets/inception.png";
 import { Link } from "react-router-dom";
 import { RatingModal } from "../RatingModal/RatingMdal";
+import { TMovie } from "@/types";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
-export function MovieCard({ className, ...props }: CardProps) {
+export function MovieCard({ movie }: { movie: TMovie }) {
   return (
-    <Card className={cn(className)} {...props}>
-      <Link to="/movie/1">
+    <Card>
+      <Link to={`/movie/${movie?._id}`}>
         <CardHeader className="p-2">
-          <img src={movieImage} className="max-h-[500px]" alt="" />
+          <img src={movie?.image} className="h-[400px]" alt="" />
         </CardHeader>
         <CardContent className="grid">
           <div className="flex  items-center gap-2">
             <Star color="orange" fill="orange" />
-            <p className="text-2xl">8.7</p>
+            <p className="text-2xl">{movie?.totalRating}</p>
           </div>
-          <CardTitle>Inception</CardTitle>
-          <p className="text-xl mt-4">Sci-Fi</p>
+          <CardTitle>{movie?.title}</CardTitle>
+          <p className="text-xl mt-4">{movie?.genre}</p>
         </CardContent>
       </Link>
       <CardFooter>
