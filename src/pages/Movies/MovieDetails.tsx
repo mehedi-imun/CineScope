@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { FaPlay, FaPlus, FaRegStar, FaStar } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
-import { useGetSingleMovieQuery } from "@/redux/api/api";
+import { useGetMovieDetailsAndReviewsQuery } from "@/redux/api/api";
 import { Play, Plus, Star, StarIcon } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 export default function MovieDetails() {
   const { id: slug } = useParams();
   // console.log(slug);
-  const { data, isLoading } = useGetSingleMovieQuery(slug);
-  // console.log(movie);
+  const { data, isLoading } = useGetMovieDetailsAndReviewsQuery(slug as string);
+
   if (isLoading)
     return (
       <p className="text-3xl text-center text-yellow-500 my-2 font-bold">
@@ -17,8 +18,9 @@ export default function MovieDetails() {
       </p>
     );
 
-  const { data: movie } = data;
-
+  const { data: movie } = data.movie;
+  const reviews = data.reviews.data;
+  console.log(reviews);
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 10; i++) {
@@ -31,6 +33,14 @@ export default function MovieDetails() {
       );
     }
     return stars;
+  };
+  const formatDate = (isoDate: string): string => {
+    const date = new Date(isoDate);
+    return date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
   };
 
   return (
@@ -81,22 +91,15 @@ export default function MovieDetails() {
         </div>
         <div className="mt-6">
           <h2 className="text-2xl font-bold mb-4">User Reviews</h2>
-          <div className="bg-gray-700 p-4 rounded-lg mb-4 animate__animated animate__fadeInUp">
-            <p className="text-yellow-500 font-semibold">John Doe</p>
-            <p className="text-gray-400 text-sm mb-2">April 5, 2023</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </p>
-          </div>
-          <div className="bg-gray-700 p-4 rounded-lg mb-4 animate__animated animate__fadeInUp">
-            <p className="text-yellow-500 font-semibold">Jane Smith</p>
-            <p className="text-gray-400 text-sm mb-2">March 28, 2023</p>
-            <p>
-              Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-              quis sem at nibh elementum imperdiet.
-            </p>
-          </div>
+          {reviews.map((review: any) => (
+            <div className="bg-gray-700 p-4 rounded-lg mb-4 animate__animated animate__fadeInUp">
+              <p className="text-yellow-500 font-semibold">{review.email}</p>
+              <p className="text-gray-400 text-sm mb-2">
+                {formatDate(review?.createdAt)}
+              </p>
+              <p>{review.comment}</p>
+            </div>
+          ))}
           <Button className="px-4 py-2 bg-yellow-500 text-gray-900 rounded-lg font-bold hover:bg-yellow-400">
             Load More Reviews
           </Button>
