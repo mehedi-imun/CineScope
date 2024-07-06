@@ -1,6 +1,6 @@
 import { useGetMoviesQuery } from "@/redux/api/api";
-import { MovieCard } from "../MovieCard/MovieCard";
 import { TMovie } from "@/types";
+import { MovieCard } from "../MovieCard/MovieCard";
 
 const TopMovies = () => {
   const { data: movies, isLoading } = useGetMoviesQuery({});

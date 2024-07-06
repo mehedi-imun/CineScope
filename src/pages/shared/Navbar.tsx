@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-   <div className="mx-auto container">
-     <div className="flex  items-center justify-between border-b-2 py-3">
+   <div className="mx-auto container  ">
+     <div className="flex  items-center justify-between border-b-2 py-3 ">
       <Link to="/" className="flex items-center">
         <h3 className="font-extrabold bg-yellow-400 p-1 rounded-md">
           CineScope{" "}

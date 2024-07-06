@@ -1,6 +1,5 @@
 // import { FaPlay, FaPlus, FaRegStar, FaStar } from "react-icons/fa";
 
-import movieImage from "@/assets/inception.png";
 import { Button } from "@/components/ui/button";
 import { useGetSingleMovieQuery } from "@/redux/api/api";
 import { Play, Plus, Star, StarIcon } from "lucide-react";
