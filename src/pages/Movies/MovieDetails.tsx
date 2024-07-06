@@ -20,7 +20,7 @@ export default function MovieDetails() {
 
   const { data: movie } = data.movie;
   const reviews = data.reviews.data;
-  console.log(reviews);
+
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 10; i++) {
@@ -43,6 +43,11 @@ export default function MovieDetails() {
     });
   };
 
+  // celculate average rating max 10
+  const totalRating = reviews.reduce((acc: number, review: any) => {
+    return acc + review.rating;
+  }, 0);
+  const averageRating = totalRating / reviews.length;
   return (
     <div className="flex flex-col items-center p-4 bg-gray-900 text-white min-h-screen">
       <div className="max-w-6xl w-full bg-gray-800 rounded-lg shadow-lg p-6 animate__animated animate__fadeIn">
@@ -59,11 +64,11 @@ export default function MovieDetails() {
                 <span className="font-semibold text-yellow-500">
                   Release Date:
                 </span>{" "}
-                January 1, 2023
+                {formatDate(movie?.releaseDate)}
               </p>
               <div className="mb-2 flex items-center">
                 <span className="font-semibold text-yellow-500">Rating:</span>
-                <div className="ml-2 flex">{renderStars(8.5)}</div>
+                <div className="ml-2 flex">{renderStars(averageRating)}</div>
               </div>
               <p className="mb-2">
                 <span className="font-semibold text-yellow-500">Genre:</span>{" "}
