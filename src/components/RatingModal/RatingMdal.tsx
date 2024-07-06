@@ -60,8 +60,10 @@ export function RatingModal({ movie }: { movie: TMovie }) {
               emptySymbol={<Star size={40} color="orange" />}
               fullSymbol={<Star size={40} color="orange" fill="orange" />}
               fractions={2}
+              initialRating={ratingValue}
               stop={10}
               onClick={(value) => setRatingValue(value)}
+            
             />
           </div>
           <div className="grid gap-4 py-4 text-gray-900">
