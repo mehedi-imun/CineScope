@@ -17,12 +17,18 @@ export const baseApi = createApi({
       }),
     }),
 
-    addMovies: builder.mutation({
-      query: (data) => ({
-        url: "/movies",
-        method: "POST",
-        body: data,
-      }),
+    addRating: builder.mutation({
+      query: ({ data, slug }) => {
+        console.log(data, slug);
+        return {
+          url: `/movies/${slug}/review`,
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: data,
+        };
+      },
     }),
   }),
 });
@@ -30,5 +36,5 @@ export const baseApi = createApi({
 export const {
   useGetMoviesQuery,
   useGetSingleMovieQuery,
-  useAddMoviesMutation,
+  useAddRatingMutation,
 } = baseApi;

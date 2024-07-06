@@ -29,7 +29,7 @@ export function MovieCard({ movie }: { movie: TMovie }) {
         </CardContent>
       </Link>
       <CardFooter>
-        <RatingModal name="Inception" />
+        <RatingModal movie={movie} />
       </CardFooter>
     </Card>
   );

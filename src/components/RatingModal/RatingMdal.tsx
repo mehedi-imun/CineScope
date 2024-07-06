@@ -12,17 +12,16 @@ import { Plus, Star } from "lucide-react";
 import Rating from "react-rating";
 import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
+import { TMovie } from "@/types";
+import { useAddRatingMutation } from "@/redux/api/api";
 
-type TMovieProps = {
-  name: string;
-};
-
-export function RatingModal({ name }: TMovieProps) {
+export function RatingModal({ movie }: { movie: TMovie }) {
   const { register, handleSubmit } = useForm();
   const [ratingValue, setRatingValue] = useState(0);
+  const [addRating] = useAddRatingMutation();
 
-  const onSubmit = (data: FieldValues) => {
-    console.log({ ...data, rating: ratingValue });
+  const onSubmit = async (values: FieldValues) => {
+    console.log(values);
   };
 
   return (
