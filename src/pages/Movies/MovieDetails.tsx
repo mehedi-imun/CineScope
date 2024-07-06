@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { FaPlay, FaPlus, FaRegStar, FaStar } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { useGetMovieDetailsAndReviewsQuery } from "@/redux/api/api";
+
 import { Play, Plus, Star, StarIcon } from "lucide-react";
 import { useParams } from "react-router-dom";
 

@@ -51,7 +51,7 @@ export function RatingModal({ movie }: { movie: TMovie }) {
           <DialogTitle className="text-center text-3xl font-bold text-yellow-400">
             RATE THIS
           </DialogTitle>
-          <h1 className="text-center text-2xl ">{name}</h1>
+          <h1 className="text-center text-2xl ">{movie?.title}</h1>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center pt-2">
@@ -63,7 +63,6 @@ export function RatingModal({ movie }: { movie: TMovie }) {
               initialRating={ratingValue}
               stop={10}
               onClick={(value) => setRatingValue(value)}
-            
             />
           </div>
           <div className="grid gap-4 py-4 text-gray-900">

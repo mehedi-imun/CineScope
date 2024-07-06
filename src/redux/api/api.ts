@@ -20,20 +20,23 @@ export const baseApi = createApi({
       }),
       providesTags: ["movies"],
     }),
-    addMovies: builder.mutation({
-      query: (data) => ({
-        url: "/movies",
+
+    addRating: builder.mutation({
+      query: ({ data, slug }) => ({
+        url: `/movies/${slug}/review`,
         method: "POST",
         body: data,
       }),
       invalidatesTags: ["movies"],
     }),
+
     getMovieReviews: builder.query({
       query: (slug) => ({
         url: `/movies/${slug}/reviews`,
         method: "GET",
       }),
     }),
+
     getMovieDetailsAndReviews: builder.query({
       queryFn: async (slug: string): Promise<any> => {
         try {
@@ -68,11 +71,7 @@ export const baseApi = createApi({
 export const {
   useGetMoviesQuery,
   useGetSingleMovieQuery,
-<<<<<<< HEAD
   useAddRatingMutation,
-=======
-  useAddMoviesMutation,
   useGetMovieReviewsQuery,
-  useGetMovieDetailsAndReviewsQuery, 
->>>>>>> 0acdec9e9dbba6d6bfcb9f46b89103afddcd641e
+  useGetMovieDetailsAndReviewsQuery,
 } = baseApi;
