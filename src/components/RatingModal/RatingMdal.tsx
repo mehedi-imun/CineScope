@@ -21,7 +21,18 @@ export function RatingModal({ movie }: { movie: TMovie }) {
   const [addRating] = useAddRatingMutation();
 
   const onSubmit = async (values: FieldValues) => {
-    console.log(values);
+    const { _id, slug } = movie;
+    const data = {
+      ...values,
+      rating: ratingValue,
+      movie: _id,
+    };
+    try {
+      const res = await addRating({ data, slug });
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
