@@ -1,25 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { FaPlay, FaPlus, FaRegStar, FaStar } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
-import { useGetMovieDetailsAndReviewsQuery } from "@/redux/api/api";
 import { Play, Plus, Star, StarIcon } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 export default function MovieDetails() {
   const { id: slug } = useParams();
-  // console.log(slug);
-  const { data, isLoading } = useGetMovieDetailsAndReviewsQuery(slug as string);
-
-  if (isLoading)
-    return (
-      <p className="text-3xl text-center text-yellow-500 my-2 font-bold">
-        Loading....
-      </p>
-    );
-
-  const { data: movie } = data.movie;
-  const reviews = data.reviews.data;
 
   const renderStars = (rating: number) => {
     const stars = [];
