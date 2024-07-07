@@ -1,5 +1,11 @@
 import { Star } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { RatingModal } from "../RatingModal/RatingMdal";
 import { TMovie } from "@/types";
@@ -20,12 +26,14 @@ export function MovieCard({ movie }: { movie: TMovie }) {
             <Star color="orange" fill="orange" />
             <p className="text-2xl font-bold">{movie?.totalRating}</p>
           </div>
-          <CardTitle className="mt-2 text-3xl font-extrabold">{movie?.title}</CardTitle>
+          <CardTitle className="mt-2 text-3xl font-extrabold">
+            {movie?.title}
+          </CardTitle>
           <p className="text-lg mt-4 text-gray-400">{movie?.genre}</p>
         </CardContent>
       </Link>
       <CardFooter className="p-4 border-t border-gray-700">
-        <RatingModal name={movie?.title} />
+        <RatingModal movie={movie} />
       </CardFooter>
     </Card>
   );

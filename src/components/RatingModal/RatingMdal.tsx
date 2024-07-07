@@ -12,17 +12,32 @@ import { Plus, Star } from "lucide-react";
 import Rating from "react-rating";
 import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
+import { TMovie } from "@/types";
+import { useAddRatingMutation } from "@/redux/api/api";
+import { toast } from "sonner";
 
-type TMovieProps = {
-  name: string;
-};
-
-export function RatingModal({ name }: TMovieProps) {
+export function RatingModal({ movie }: { movie: TMovie }) {
   const { register, handleSubmit } = useForm();
   const [ratingValue, setRatingValue] = useState(0);
+  const [addRating] = useAddRatingMutation();
 
-  const onSubmit = (data: FieldValues) => {
-    console.log({ ...data, rating: ratingValue });
+  const onSubmit = async (values: FieldValues) => {
+    const data = {
+      ...values,
+      rating: ratingValue,
+      movie: movie?._id,
+    };
+    const slug = movie?.slug;
+    // console.log(data);
+    try {
+      const res = await addRating({ data, slug }).unwrap();
+      // console.log(res);
+      if (res?.success) {
+        toast.success(res?.message);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -38,7 +53,7 @@ export function RatingModal({ name }: TMovieProps) {
           <DialogTitle className="text-center text-3xl font-bold text-yellow-400">
             RATE THIS
           </DialogTitle>
-          <h1 className="text-center text-2xl ">{name}</h1>
+          <h1 className="text-center text-2xl ">{movie?.title}</h1>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center pt-2">
@@ -50,7 +65,6 @@ export function RatingModal({ name }: TMovieProps) {
               initialRating={ratingValue}
               stop={10}
               onClick={(value) => setRatingValue(value)}
-            
             />
           </div>
           <div className="grid gap-4 py-4 text-gray-900">
